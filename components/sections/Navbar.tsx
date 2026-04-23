@@ -21,6 +21,16 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const section = document.querySelector(targetId);
+    if (section) {
+      // Use native smooth scroll which Lenis can either hijack or coexist with gracefully
+      section.scrollIntoView({ behavior: "auto" });
+      window.history.pushState(null, "", targetId);
+    }
+  };
+
   return (
     <header
       className={cn(
@@ -52,18 +62,22 @@ export function Navbar() {
         
         {/* Desktop Links */}
         <nav className="hidden md:flex items-center justify-center flex-1 mx-8 gap-8">
-          {SONY_LINKS.map((item) => (
-            <Link
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className={cn(
-                "text-[12px] font-medium tracking-wide transition-colors",
-                isScrolled ? "text-[#1d1d1f]/80 hover:text-black" : "text-white/80 hover:text-white"
-              )}
-            >
-              {item}
-            </Link>
-          ))}
+          {SONY_LINKS.map((item) => {
+            const targetId = `#${item.toLowerCase()}`;
+            return (
+              <a
+                key={item}
+                href={targetId}
+                onClick={(e) => handleNavClick(e, targetId)}
+                className={cn(
+                  "text-[12px] font-medium tracking-wide transition-colors cursor-pointer",
+                  isScrolled ? "text-[#1d1d1f]/80 hover:text-black" : "text-white/80 hover:text-white"
+                )}
+              >
+                {item}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Icons */}

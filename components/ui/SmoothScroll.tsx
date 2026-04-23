@@ -32,7 +32,19 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
+    // CRITICAL FIX: Ensure Lenis is aware of GSAP Pin Spacers that increase document height
+    const onRefresh = () => {
+      lenis.resize();
+    };
+    ScrollTrigger.addEventListener("refresh", onRefresh);
+
+    // Double check on initial load to ensure all dynamic heights are flushed
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
     return () => {
+      ScrollTrigger.removeEventListener("refresh", onRefresh);
       lenis.destroy();
       gsap.ticker.remove(update);
     };
