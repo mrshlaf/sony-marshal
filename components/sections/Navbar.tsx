@@ -3,15 +3,21 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Search, ShoppingBag, Menu } from "lucide-react";
+import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SONY_LINKS = [
-  "PlayStation", "Cameras", "Audio", "Displays", "Mobile", "Entertainment", "Support"
+  { name: "PlayStation", href: "#playstation" },
+  { name: "Cameras", href: "#cameras" },
+  { name: "Audio", href: "#audio" },
+  { name: "Displays", href: "#displays" },
+  { name: "Mobile", href: "#mobile" },
+  { name: "Support", href: "#support" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,74 +28,109 @@ export function Navbar() {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
-    const section = document.querySelector(targetId);
-    if (section) {
-      // Use native smooth scroll which Lenis can either hijack or coexist with gracefully
-      section.scrollIntoView({ behavior: "auto" });
-      window.history.pushState(null, "", targetId);
+    if (targetId.startsWith("#")) {
+      e.preventDefault();
+      setIsMenuOpen(false);
+      const section = document.querySelector(targetId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", targetId);
+      }
     }
   };
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
-        isScrolled
-          ? "bg-white/60 backdrop-blur-2xl backdrop-saturate-150 border-b border-black/5" 
-          : "bg-transparent border-b border-transparent"
-      )}
-    >
-      <div className="max-w-[1024px] mx-auto px-4 sm:px-6 h-[44px] flex items-center justify-between">
-        
-        {/* Mobile Menu Icon */}
-        <button className={cn("md:hidden p-2 transition-colors", isScrolled ? "text-[#1d1d1f]" : "text-white")}>
-          <Menu size={18} strokeWidth={1.5} />
-        </button>
-
-        {/* Logo restricted strictly */}
+    <>
+      <header
+        className={cn(
+          "fixed top-4 left-1/2 -translate-x-1/2 z-[60] transition-all duration-700 ease-in-out",
+          "w-[95%] max-w-[800px] rounded-full px-6 flex items-center justify-between h-[52px]",
+          isScrolled
+            ? "bg-white/70 backdrop-blur-3xl border border-black/5 shadow-xl py-2"
+            : "bg-black/10 backdrop-blur-md border border-white/10 py-3"
+        )}
+      >
+        {/* Logo */}
         <Link href="/" className="flex items-center justify-center transition-opacity hover:opacity-70 h-full">
           <Image
-            src="/images/sony-logo.png"
+            src="/images/sony-logo-long.png"
             alt="Sony"
-            width={72}
-            height={14}
-            style={{ width: "auto", height: "14px" }}
-            className={cn("object-contain transition-all duration-300", !isScrolled ? "invert brightness-0" : "")} /* White over Hero, Black on scroll */
+            width={100}
+            height={16}
+            className={cn("object-contain transition-all duration-300", !isScrolled && "invert brightness-200")}
             priority
           />
         </Link>
         
         {/* Desktop Links */}
-        <nav className="hidden md:flex items-center justify-center flex-1 mx-8 gap-8">
-          {SONY_LINKS.map((item) => {
-            const targetId = `#${item.toLowerCase()}`;
-            return (
-              <a
-                key={item}
-                href={targetId}
-                onClick={(e) => handleNavClick(e, targetId)}
-                className={cn(
-                  "text-[12px] font-medium tracking-wide transition-colors cursor-pointer",
-                  isScrolled ? "text-[#1d1d1f]/80 hover:text-black" : "text-white/80 hover:text-white"
-                )}
-              >
-                {item}
-              </a>
-            );
-          })}
+        <nav className="hidden lg:flex items-center justify-center flex-1 mx-6 gap-6">
+          {SONY_LINKS.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={cn(
+                "text-[12px] font-semibold tracking-wide transition-colors uppercase",
+                isScrolled ? "text-[#1d1d1f]/70 hover:text-black" : "text-white/80 hover:text-white"
+              )}
+            >
+              {item.name}
+            </a>
+          ))}
         </nav>
 
         {/* Icons */}
-        <div className={cn("flex items-center gap-6 flex-shrink-0 transition-colors", isScrolled ? "text-[#1d1d1f]" : "text-white")}>
-          <button className="hover:opacity-70 transition-opacity">
-            <Search size={16} strokeWidth={2} />
+        <div className={cn("flex items-center gap-4 transition-colors", isScrolled ? "text-[#1d1d1f]" : "text-white")}>
+          <button className="hover:opacity-70 transition-opacity hidden sm:block">
+            <Search size={18} strokeWidth={2} />
           </button>
           <button className="hover:opacity-70 transition-opacity">
-            <ShoppingBag size={16} strokeWidth={2} />
+            <ShoppingBag size={18} strokeWidth={2} />
+          </button>
+          <button 
+            className="lg:hidden p-1 hover:opacity-70 transition-opacity"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-[55] bg-white transition-all duration-500 flex flex-col pt-24 px-8",
+          isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+        )}
+      >
+        <div className="flex flex-col gap-6">
+          {SONY_LINKS.map((item, idx) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={cn(
+                "text-3xl font-bold tracking-tighter text-[#1d1d1f] hover:pl-4 transition-all duration-300",
+                isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
+              )}
+              style={{ transitionDelay: `${idx * 50}ms` }}
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+        
+        <div className="mt-auto pb-12 flex flex-col gap-8">
+          <div className="h-[1px] bg-gray-100 w-full" />
+          <div className="flex gap-6 text-zinc-400">
+             <Search size={24} />
+             <ShoppingBag size={24} />
+          </div>
+          <p className="text-zinc-400 text-sm font-medium">
+            Project Lumina — Sony Indonesia 2026
+          </p>
+        </div>
       </div>
-    </header>
+    </>
   );
 }
