@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { ProductGallery } from "@/components/sections/ProductGallery";
 import { TechSpecs } from "@/components/sections/TechSpecs";
+import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <ProductGallery />
         <TechSpecs />
       </main>
+      <Footer />
     </div>
   );
 }
