@@ -1,19 +1,19 @@
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
-import { ProductGallery } from "@/components/sections/ProductGallery";
-import { TechSpecs } from "@/components/sections/TechSpecs";
+import { BentoGrid } from "@/components/sections/BentoGrid";
+import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#ffffff]">
       <Navbar />
       <main>
         <Hero />
         <LogoMarquee />
-        <ProductGallery />
-        <TechSpecs />
+        <BentoGrid />
+        <ProductShowcase />
       </main>
       <Footer />
     </div>

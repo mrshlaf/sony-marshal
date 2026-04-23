@@ -6,27 +6,20 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial animation for the text
+    // Initial fade in for text
     gsap.fromTo(
-      ".hero-text",
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: "power3.out", delay: 0.2 }
+      ".hero-anim",
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out", delay: 0.1 }
     );
 
-    // Initial scale for video
-    gsap.fromTo(
-      videoRef.current,
-      { scale: 1.1, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 2, ease: "power2.out" }
-    );
-
-    // Scroll sequence
+    // Subtle video scale-down on scroll
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -37,12 +30,12 @@ export function Hero() {
       },
     });
 
-    tl.to(videoRef.current, {
-      scale: 0.7,
-      borderRadius: "32px",
+    tl.to(videoWrapperRef.current, {
+      scale: 0.85,
+      borderRadius: "48px",
       ease: "none",
     }).to(
-      ".hero-info",
+      ".hero-content",
       {
         opacity: 0,
         y: -50,
@@ -53,31 +46,49 @@ export function Hero() {
   }, { scope: containerRef });
 
   return (
-    <section 
-      ref={containerRef} 
-      className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center flex-col"
-    >
-      <video
-        ref={videoRef}
-        src="/videos/sony-hero.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      />
+    <section ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden flex flex-col justify-between">
       
-      {/* Overlay to ensure text readability if needed */}
-      <div className="absolute inset-0 bg-black/30 z-10"></div>
-      
-      <div className="relative z-20 flex flex-col items-center justify-center text-white h-full px-4 mt-20 hero-info pointer-events-none">
-        <h1 className="hero-text text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-center mb-6">
-          Beyond the Senses
-        </h1>
-        <p className="hero-text text-lg md:text-2xl font-light tracking-wide max-w-2xl text-center text-white/80">
-          Experience the latest in imaging, gaming, and audio innovation.
-        </p>
+      {/* Video Background */}
+      <div 
+        ref={videoWrapperRef} 
+        className="absolute inset-0 w-full h-full origin-bottom will-change-transform overflow-hidden"
+      >
+        <video
+          src="/videos/sony-hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover scale-[1.05]"
+        />
+        {/* Vignette/Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80"></div>
       </div>
+
+      {/* Content wrapper */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-white text-center px-4 pt-16">
+        <div className="hero-content flex flex-col items-center">
+          <p className="hero-anim text-sm md:text-base font-semibold tracking-[0.2em] text-white/80 uppercase mb-4">
+            Alpha 7 IV
+          </p>
+          <h1 className="hero-anim text-5xl md:text-7xl lg:text-[110px] leading-none font-bold tracking-tighter mb-6">
+            Beyond the Senses.
+          </h1>
+          <p className="hero-anim text-lg md:text-2xl font-normal text-white/90 max-w-2xl mb-10">
+            The ultimate hybrid full-frame camera. <br className="hidden md:block" /> Experience true imaging supremacy.
+          </p>
+          
+          <div className="hero-anim flex items-center gap-6">
+            <button className="bg-white text-black px-8 py-3 rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors">
+              Buy
+            </button>
+            <button className="text-white text-sm font-medium hover:underline underline-offset-4 flex items-center gap-2">
+              Learn more <span className="text-[10px]">▶</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
     </section>
   );
 }

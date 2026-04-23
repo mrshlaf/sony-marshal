@@ -3,22 +3,17 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
-const BRANDS = ["PlayStation", "Bravia", "Alpha", "G-Master", "XM5"];
+const BRANDS = ["PlayStation", "Bravia", "Alpha", "G-Master", "Walkman", "Xperia"];
 
 export function LogoMarquee() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    // We duplicate the brands array a few times to ensure a seamless infinite scroll
-    if (!marqueeRef.current) return;
-
     const ctx = gsap.context(() => {
-      // Create a seamless infinite horizontal scroll using GSAP
       gsap.to(".marquee-inner", {
-        xPercent: -50, // Move half the width
+        xPercent: -50,
         repeat: -1,
-        duration: 20, // adjust speed here
+        duration: 25,
         ease: "linear",
       });
     }, containerRef);
@@ -26,32 +21,33 @@ export function LogoMarquee() {
     return () => ctx.revert();
   }, []);
 
-  // Duplicate the array to create two exact sets of brands side by side
-  // that will smoothly loop at the 50% mark width.
   const allBrands = [...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS];
 
   return (
     <section 
       ref={containerRef} 
-      className="py-24 bg-white border-b border-gray-100 overflow-hidden"
+      className="py-12 bg-white flex flex-col justify-center overflow-hidden border-b border-gray-100"
     >
-      <div className="w-full flex whitespace-nowrap">
-        <div 
-          ref={marqueeRef} 
-          className="marquee-inner flex gap-16 md:gap-32 px-8"
-        >
+      <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[#1d1d1f]/40 mb-6">
+        The Sony Ecosystem
+      </p>
+      <div className="w-full flex whitespace-nowrap mask-edges">
+        <div className="marquee-inner flex gap-12 md:gap-24 px-4 items-center">
           {allBrands.map((brand, idx) => (
-            <div 
-              key={idx} 
-              className="flex items-center justify-center shrink-0"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-black/90">
+            <div key={idx} className="flex items-center justify-center shrink-0">
+              <h2 className="text-xl md:text-3xl font-semibold tracking-tight text-[#1d1d1f]/60">
                 {brand}
               </h2>
             </div>
           ))}
         </div>
       </div>
+      <style jsx>{`
+        .mask-edges {
+          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+      `}</style>
     </section>
   );
 }
