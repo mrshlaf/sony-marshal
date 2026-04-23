@@ -4,100 +4,92 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Camera, Cpu, Eye, Video } from "lucide-react";
+import { Camera, Cpu, Eye, Video, Plus } from "lucide-react";
+
+const BENTO_DATA = [
+  {
+    title: "33.0 Megapixel",
+    subtitle: "EXMOR R™ CMOS SENSOR",
+    desc: "Unprecedented detail and dynamic range in a full-frame sensor designed for hybrid creators.",
+    icon: Camera,
+    size: "md:col-span-2",
+    color: "bg-zinc-200/40",
+    textColor: "text-zinc-900"
+  },
+  {
+    title: "BIONZ XR™",
+    subtitle: "PROCESSING ENGINE",
+    desc: "8x more processing power for rapid data handling and reduced rolling shutter.",
+    icon: Cpu,
+    size: "md:col-span-1",
+    color: "bg-zinc-200/40",
+    textColor: "text-zinc-900"
+  },
+  {
+    title: "Real-time AF",
+    subtitle: "DETECTION INTELLIGENCE",
+    desc: "AI-driven tracking for eyes and animals with industry-leading speed.",
+    icon: Eye,
+    size: "md:col-span-1",
+    color: "bg-[#0d0d0d]",
+    textColor: "text-zinc-100"
+  },
+  {
+    title: "4K 60P 10-BIT",
+    subtitle: "PRODUCTION STANDARDS",
+    desc: "Broadcast-quality internal recording with S-Cinetone color processing.",
+    icon: Video,
+    size: "md:col-span-2",
+    color: "bg-zinc-200/40",
+    textColor: "text-zinc-900"
+  }
+];
 
 export function BentoGrid() {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    gsap.fromTo(
-      ".bento-box",
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-        },
-      }
-    );
+    gsap.fromTo(".bento-box", { y: 20, opacity: 0 }, {
+      y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out",
+      scrollTrigger: { trigger: containerRef.current, start: "top 75%" }
+    });
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 bg-white px-4 md:px-8">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="mb-16 text-center max-w-2xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter text-[#1d1d1f] mb-4">
-            A new standard <br /> for imaging.
+    <section ref={containerRef} className="py-12 md:py-16 bg-[#f5f5f7] px-6">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="mb-6">
+          <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-[#1d1d1f] leading-[0.8] uppercase">
+            Technical <br /> <span className="text-zinc-400">Excellence.</span>
           </h2>
-          <p className="text-lg text-[#1d1d1f]/60 font-medium">
-            Alpha 7 IV pushes the boundaries of what a hybrid camera can do.
-          </p>
         </div>
 
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[320px]">
-          
-          {/* Box 1 - Span 2 cols */}
-          <div className="bento-box md:col-span-2 bg-[#f5f5f7] border border-black/[0.03] rounded-[40px] p-8 md:p-12 flex flex-col justify-between hover:shadow-2xl hover:scale-[1.01] transition-all duration-500 overflow-hidden relative group">
-            <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 group-hover:scale-[1.7] transition-transform duration-700">
-               <Camera size={120} />
-            </div>
-            <Camera size={32} className="text-[#1d1d1f] mb-4 relative z-10" />
-            <div className="relative z-10">
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#1d1d1f]/40 mb-3">Next-Gen Sensor</p>
-              <h3 className="text-3xl md:text-5xl font-semibold tracking-tighter text-[#1d1d1f] leading-[0.9]">
-                33.0 Megapixel <br /> <span className="text-[#1d1d1f]/30">Exmor R CMOS.</span>
-              </h3>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:auto-rows-[240px]">
+          {BENTO_DATA.map((item, i) => {
+             const Icon = item.icon;
+             return (
+               <div 
+                 key={i} 
+                 className={`bento-box ${item.size} ${item.color} ${item.textColor} border border-zinc-200/50 rounded-[32px] p-8 md:p-8 flex flex-col justify-center gap-4 hover:shadow-2xl transition-all duration-500 overflow-hidden relative group cursor-pointer backdrop-blur-sm`}
+               >
+                 <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <Plus size={20} className={item.textColor === "text-zinc-100" ? "text-white/20" : "text-black/10"} />
+                 </div>
 
-          {/* Box 2 - Single */}
-          <div className="bento-box bg-[#f5f5f7] border border-black/[0.03] rounded-[40px] p-8 md:p-12 flex flex-col justify-between hover:shadow-2xl hover:scale-[1.01] transition-all duration-500 group">
-            <Cpu size={32} className="text-[#1d1d1f] mb-4 group-hover:rotate-12 transition-transform duration-500" />
-            <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#1d1d1f]/40 mb-3">Processing</p>
-              <h3 className="text-2xl md:text-4xl font-semibold tracking-tighter text-[#1d1d1f] leading-none mb-1">
-                BIONZ XR™
-              </h3>
-              <p className="text-sm font-bold text-emerald-600">8x Faster Engine.</p>
-            </div>
-          </div>
-
-          {/* Box 3 - Single */}
-          <div className="bento-box bg-[#1d1d1f] rounded-[40px] p-8 md:p-12 flex flex-col justify-between hover:shadow-2xl hover:scale-[1.01] transition-all duration-500 text-white group">
-            <Eye size={32} className="text-white/40 mb-4 group-hover:scale-125 transition-transform" />
-            <div>
-              <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-white/40 mb-3">AI Autofocus</p>
-              <h3 className="text-2xl md:text-4xl font-semibold tracking-tighter leading-none">
-                Real-time <br /> Eye AF.
-              </h3>
-            </div>
-          </div>
-
-          {/* Box 4 - Span 2 cols */}
-          <div className="bento-box md:col-span-2 bg-[#f5f5f7] border border-black/[0.03] rounded-[40px] p-8 md:p-12 flex flex-col justify-between hover:shadow-2xl hover:scale-[1.01] transition-all duration-500 relative overflow-hidden group">
-            <div className="absolute top-1/2 -right-20 -translate-y-1/2 opacity-[0.03] group-hover:-translate-x-10 transition-transform duration-1000">
-               <Video size={300} />
-            </div>
-            <Video size={32} className="text-[#1d1d1f] mb-4 relative z-10" />
-            <div className="max-w-md relative z-10">
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#1d1d1f]/40 mb-3">Professional Video</p>
-              <h3 className="text-3xl md:text-5xl font-semibold tracking-tighter text-[#1d1d1f] leading-[0.9] mb-5">
-                4K 60p 10-bit <br /> <span className="text-[#1d1d1f]/30">Production.</span>
-              </h3>
-              <p className="text-[#1d1d1f]/50 font-medium leading-relaxed">
-                Unlock professional workflows with S-Cinetone™ and 10-bit 4:2:2 internal recording.
-              </p>
-            </div>
-          </div>
-
+                 <div className="flex flex-col gap-1">
+                   <Icon size={24} className={`mb-2 transition-transform duration-700 group-hover:scale-110 ${item.textColor === "text-zinc-100" ? "text-white/40" : "text-black/20"}`} />
+                   <p className={`text-[9px] font-bold tracking-[0.1em] uppercase ${item.textColor === "text-zinc-100" ? "text-white/40" : "text-zinc-400"}`}>
+                     {item.subtitle}
+                   </p>
+                   <h3 className="text-2xl md:text-3xl font-bold tracking-tighter leading-none mb-2">{item.title}</h3>
+                   <p className={`text-xs md:text-sm font-medium leading-tight max-w-sm ${item.textColor === "text-zinc-100" ? "text-white/50" : "text-zinc-500"}`}>
+                     {item.desc}
+                   </p>
+                 </div>
+               </div>
+             );
+          })}
         </div>
       </div>
     </section>

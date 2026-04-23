@@ -13,7 +13,6 @@ export function Lifestyle() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Parallax effect for the main image
     gsap.to(imageRef.current, {
       yPercent: 20,
       ease: "none",
@@ -26,41 +25,33 @@ export function Lifestyle() {
     });
 
     gsap.fromTo(".lifestyle-text", 
-      { y: 100, opacity: 0 },
+      { y: 60, opacity: 0 },
       { 
         y: 0, opacity: 1, 
         duration: 1.2, 
         ease: "power4.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 40%",
+          start: "top 60%",
         }
       }
     );
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full h-[80vh] md:h-screen overflow-hidden bg-black">
+    <section ref={containerRef} className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden bg-[#0d0d0d]">
       <div ref={imageRef} className="absolute inset-0 w-full h-[120%] -top-[10%]">
-        <Image
-          src="/images/sony2.jpg"
-          alt="Lifestyle Sony"
-          fill
-          className="object-cover opacity-50 grayscale"
-          priority
-        />
+        <Image src="/images/sony2.jpg" alt="Culture" fill className="object-cover opacity-20 grayscale saturate-0" priority />
       </div>
-
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
-
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+      
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-6">
          <div className="lifestyle-text">
-            <p className="text-[12px] font-bold tracking-[0.4em] uppercase text-white/60 mb-6 underline underline-offset-8">Creators' Life</p>
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-white mb-10 leading-none">
-              Capture every <br /> <span className="text-white/40">Kando</span> moment.
+            <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-zinc-100 mb-6 leading-[0.85] uppercase">
+              Documenting <br /> every <span className="text-zinc-600">KANDO</span> moment.
             </h2>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-medium leading-relaxed">
-              From the bustling streets of Tokyo to the serene landscapes of the archipelago, Sony empowers you to tell your story with uncompromising clarity.
+            <p className="text-sm md:text-base text-zinc-500 max-w-xl mx-auto font-bold uppercase tracking-[0.3em]">
+              Visual legacies with uncompromising precision.
             </p>
          </div>
       </div>

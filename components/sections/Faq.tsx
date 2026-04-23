@@ -10,19 +10,19 @@ import { cn } from "@/lib/utils";
 const FAQ_DATA = [
   {
     question: "Do Sony Alpha cameras support third-party lenses?",
-    answer: "Yes, Sony's E-mount system is one of the most versatile in the industry. While we highly recommend Sony G-Master lenses for optimal autofocus performance and resolution, hundreds of third-party lenses are fully compatible with Alpha 7 IV and other E-mount bodies."
+    answer: "Yes, the E-mount system is industry-standard and highly versatile. While we recommend Sony G-Master lenses for optimal resolution, hundreds of third-party lenses are fully compatible."
   },
   {
     question: "Can I upgrade the PlayStation 5 internal storage?",
-    answer: "Absolutely. The PlayStation 5 features an expansion slot for standard M.2 NVMe SSDs. We recommend using Gen4 SSDs with read speeds of 5500MB/s or faster, paired with a heatsink to ensure optimal gaming performance."
+    answer: "The PlayStation 5 features an expansion slot for PCIe Gen4 M.2 NVMe SSDs. We recommend using SSDs with read speeds of 5500MB/s or faster for peak gaming performance."
   },
   {
     question: "Does the WH-1000XM5 support multi-point connection?",
-    answer: "Yes, the WH-1000XM5 supports multi-point Bluetooth connections, allowing you to pair with two devices at the same time. When a call comes in, your headphones know which device is ringing and connects to the right one automatically."
+    answer: "Yes, the WH-1000XM5 supports simultaneous multi-point Bluetooth connections, allowing seamless switching between two devices."
   },
   {
     question: "Are Sony SRS-XG300 speakers waterproof?",
-    answer: "The SRS-XG300 boasts an IP67 rating, meaning it is thoroughly water-resistant, dustproof, and rustproof. You can safely take it to the beach or use it by the pool without worry."
+    answer: "The SRS-XG300 features an IP67 rating, ensuring it is water-resistant, dustproof, and rustproof for uncompromising durability."
   }
 ];
 
@@ -54,30 +54,28 @@ export function Faq() {
   };
 
   return (
-    <section ref={containerRef} id="support" className="py-16 md:py-48 bg-white px-6">
-      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20">
-        
+    <section ref={containerRef} id="support" className="py-12 md:py-20 bg-[#0d0d0d] px-6 border-t border-white/5">
+      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-8 lg:gap-20">
         <div className="w-full lg:w-4/12">
-           <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-400 mb-8">Support Center</p>
-           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#1d1d1f] mb-6">
-             Common <br /> Queries.
+           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4 uppercase">
+             Common <br /> <span className="text-zinc-600">Queries.</span>
            </h2>
-           <p className="text-zinc-500 font-medium">Expert answers for your seamless Sony experience.</p>
+           <p className="text-zinc-500 font-bold uppercase tracking-widest text-xs">Expert technical guidance reference.</p>
         </div>
 
-        <div className="w-full lg:w-8/12 flex flex-col">
+        <div className="w-full lg:w-8/12 flex flex-col border-t border-white/10">
           {FAQ_DATA.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div 
                 key={index} 
-                className="faq-item border-b border-zinc-100 cursor-pointer group"
+                className="faq-item border-b border-white/10 cursor-pointer group"
                 onClick={() => toggleAccordion(index)}
               >
-                <div className="py-10 flex items-center justify-between">
-                  <h3 className="font-bold text-xl md:text-2xl text-[#1d1d1f] pr-8 group-hover:text-zinc-400 transition-colors">{faq.question}</h3>
-                  <div className={cn("p-2 rounded-full border border-zinc-100 bg-white transition-all duration-500", isOpen ? "rotate-45 bg-[#1d1d1f] text-white" : "rotate-0")}>
-                    <Plus size={24} strokeWidth={1.5} />
+                <div className="py-8 flex items-center justify-between">
+                  <h3 className="font-bold text-lg md:text-xl text-zinc-100 pr-8 group-hover:text-zinc-400 transition-colors uppercase tracking-tight">{faq.question}</h3>
+                  <div className={cn("p-2 rounded-full border border-white/10 bg-transparent transition-all duration-500", isOpen ? "rotate-45 bg-white text-black" : "rotate-0 text-white")}>
+                    <Plus size={20} strokeWidth={1.5} />
                   </div>
                 </div>
                 
@@ -87,7 +85,7 @@ export function Faq() {
                     isOpen ? "max-h-[500px] pb-10 opacity-100" : "max-h-0 opacity-0"
                   )}
                 >
-                  <div className="text-lg text-zinc-500 leading-relaxed font-medium max-w-2xl">
+                  <div className="text-base text-zinc-400 leading-relaxed font-medium max-w-2xl uppercase tracking-tighter">
                     {faq.answer}
                   </div>
                 </div>
