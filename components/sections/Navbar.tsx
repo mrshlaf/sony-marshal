@@ -51,7 +51,7 @@ export function Navbar() {
         )}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center transition-opacity hover:opacity-70 h-full">
+        <Link href="/" className="magnetic flex items-center justify-center transition-opacity hover:opacity-70 h-full">
           <Image
             src="/images/sony-logo-long.png"
             alt="Sony"
@@ -81,14 +81,14 @@ export function Navbar() {
 
         {/* Icons */}
         <div className={cn("flex items-center gap-4 transition-colors", isScrolled ? "text-[#1d1d1f]" : "text-white")}>
-          <button className="hover:opacity-70 transition-opacity hidden sm:block">
+          <button className="magnetic hover:opacity-70 transition-opacity hidden sm:block">
             <Search size={18} strokeWidth={2} />
           </button>
-          <button className="hover:opacity-70 transition-opacity">
+          <button className="magnetic hover:opacity-70 transition-opacity">
             <ShoppingBag size={18} strokeWidth={2} />
           </button>
           <button 
-            className="lg:hidden p-1 hover:opacity-70 transition-opacity"
+            className="magnetic lg:hidden p-1 hover:opacity-70 transition-opacity"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}

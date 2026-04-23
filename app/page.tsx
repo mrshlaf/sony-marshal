@@ -9,9 +9,12 @@ import { Ecosystem } from "@/components/sections/Ecosystem";
 import { Faq } from "@/components/sections/Faq";
 import { Footer } from "@/components/sections/Footer";
 
+import { CustomCursor } from "@/components/CustomCursor";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#ffffff]">
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

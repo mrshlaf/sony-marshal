@@ -54,43 +54,47 @@ export function Faq() {
   };
 
   return (
-    <section ref={containerRef} id="support" className="py-24 md:py-32 bg-white px-4 md:px-8 max-w-[1000px] mx-auto border-t border-gray-100">
-      <div className="mb-16 text-center">
-        <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#1d1d1f] mb-4">
-          Frequently asked questions.
-        </h2>
-        <p className="text-[#1d1d1f]/60 font-medium">Answers to common questions about the Sony ecosystem.</p>
-      </div>
+    <section ref={containerRef} id="support" className="py-16 md:py-48 bg-white px-6">
+      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20">
+        
+        <div className="w-full lg:w-4/12">
+           <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-400 mb-8">Support Center</p>
+           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#1d1d1f] mb-6">
+             Common <br /> Queries.
+           </h2>
+           <p className="text-zinc-500 font-medium">Expert answers for your seamless Sony experience.</p>
+        </div>
 
-      <div className="flex flex-col gap-4">
-        {FAQ_DATA.map((faq, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <div 
-              key={index} 
-              className="faq-item border border-gray-200 rounded-2xl overflow-hidden cursor-pointer bg-zinc-50/50 hover:bg-zinc-50 transition-colors"
-              onClick={() => toggleAccordion(index)}
-            >
-              <div className="p-6 md:p-8 flex items-center justify-between">
-                <h3 className="font-semibold text-lg md:text-xl text-[#1d1d1f] pr-8">{faq.question}</h3>
-                <div className={cn("p-2 rounded-full border border-gray-200 bg-white transition-transform duration-500", isOpen ? "rotate-45" : "rotate-0")}>
-                  <Plus size={20} className="text-[#1d1d1f]" />
-                </div>
-              </div>
-              
+        <div className="w-full lg:w-8/12 flex flex-col">
+          {FAQ_DATA.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
               <div 
-                className={cn(
-                  "overflow-hidden transition-all duration-500 ease-in-out", 
-                  isOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
-                )}
+                key={index} 
+                className="faq-item border-b border-zinc-100 cursor-pointer group"
+                onClick={() => toggleAccordion(index)}
               >
-                <div className="p-6 md:p-8 pt-0 text-[#1d1d1f]/70 leading-relaxed font-medium">
-                  {faq.answer}
+                <div className="py-10 flex items-center justify-between">
+                  <h3 className="font-bold text-xl md:text-2xl text-[#1d1d1f] pr-8 group-hover:text-zinc-400 transition-colors">{faq.question}</h3>
+                  <div className={cn("p-2 rounded-full border border-zinc-100 bg-white transition-all duration-500", isOpen ? "rotate-45 bg-[#1d1d1f] text-white" : "rotate-0")}>
+                    <Plus size={24} strokeWidth={1.5} />
+                  </div>
+                </div>
+                
+                <div 
+                  className={cn(
+                    "overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]", 
+                    isOpen ? "max-h-[500px] pb-10 opacity-100" : "max-h-0 opacity-0"
+                  )}
+                >
+                  <div className="text-lg text-zinc-500 leading-relaxed font-medium max-w-2xl">
+                    {faq.answer}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </section>
   );
