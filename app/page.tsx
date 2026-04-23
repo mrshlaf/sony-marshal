@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
+import { ProductGallery } from "@/components/sections/ProductGallery";
 
 export default function Home() {
   return (
@@ -9,9 +10,10 @@ export default function Home() {
       <main>
         <Hero />
         <LogoMarquee />
-        {/* Temporary space to test scrolling past the marquee */}
-        <section className="h-[80vh] flex items-start justify-center pt-32 bg-white text-black">
-          <p className="text-2xl font-light tracking-tight">Gallery section will be here.</p>
+        <ProductGallery />
+        {/* Temporary space to test the final transition out of the gallery */}
+        <section className="h-[80vh] flex items-center justify-center bg-white border-t border-gray-100">
+          <p className="text-xl font-light text-zinc-500">Tech Specs section goes here.</p>
         </section>
       </main>
     </div>
