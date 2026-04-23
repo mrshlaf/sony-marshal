@@ -21,7 +21,7 @@ export function TechSpecs() {
 
     const lines = gsap.utils.toArray<HTMLElement>(".reveal-line");
 
-    lines.forEach((line) => {
+    lines.forEach((line: HTMLElement) => {
       gsap.fromTo(
         line,
         { y: 100, opacity: 0 },
