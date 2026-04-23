@@ -47,11 +47,11 @@ export function Hero() {
       </div>
       
       <div ref={headlineRef} className="relative z-10 w-full max-w-[1400px] px-8 flex flex-col items-center text-center">
-        <h1 className="hero-reveal text-[15vw] md:text-[11vw] leading-[0.75] font-bold tracking-tighter text-white mb-8 uppercase">
+        <h1 className="hero-reveal text-[15vw] md:text-[11vw] leading-[0.75] font-bold tracking-tighter text-white mb-4 uppercase">
           Beyond <br /> <span className="text-zinc-500">Senses.</span>
         </h1>
         
-        <p className="hero-reveal text-base md:text-xl font-medium text-zinc-400 max-w-2xl leading-relaxed mb-12">
+        <p className="hero-reveal text-base md:text-xl font-medium text-zinc-400 max-w-2xl leading-relaxed mb-8">
           The Alpha 7 IV defines a new era of hybrid storytelling. Precision engineering meets unrestricted creative freedom in our most versatile full-frame system yet.
         </p>
         

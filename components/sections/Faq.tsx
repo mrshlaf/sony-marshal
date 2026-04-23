@@ -43,7 +43,7 @@ export function Faq() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 70%",
+          start: "top 80%",
         }
       }
     );
@@ -54,16 +54,16 @@ export function Faq() {
   };
 
   return (
-    <section ref={containerRef} id="support" className="py-12 md:py-20 bg-[#0d0d0d] px-6 border-t border-white/5">
+    <section ref={containerRef} id="support" className="py-10 md:py-16 bg-[#0d0d0d] px-6 border-t border-white/5">
       <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-8 lg:gap-20">
         <div className="w-full lg:w-4/12">
-           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4 uppercase">
-             Common <br /> <span className="text-zinc-600">Queries.</span>
+           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-2 uppercase">
+             Common <br /> <span className="text-zinc-500">Queries.</span>
            </h2>
-           <p className="text-zinc-500 font-bold uppercase tracking-widest text-xs">Expert technical guidance reference.</p>
+           <p className="text-zinc-400 font-bold uppercase tracking-widest text-[9px]">Expert technical guidance reference.</p>
         </div>
 
-        <div className="w-full lg:w-8/12 flex flex-col border-t border-white/10">
+        <div className="w-full lg:w-8/12 flex flex-col border-t border-white/10 mt-4">
           {FAQ_DATA.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
@@ -72,20 +72,20 @@ export function Faq() {
                 className="faq-item border-b border-white/10 cursor-pointer group"
                 onClick={() => toggleAccordion(index)}
               >
-                <div className="py-8 flex items-center justify-between">
-                  <h3 className="font-bold text-lg md:text-xl text-zinc-100 pr-8 group-hover:text-zinc-400 transition-colors uppercase tracking-tight">{faq.question}</h3>
-                  <div className={cn("p-2 rounded-full border border-white/10 bg-transparent transition-all duration-500", isOpen ? "rotate-45 bg-white text-black" : "rotate-0 text-white")}>
-                    <Plus size={20} strokeWidth={1.5} />
+                <div className="py-6 flex items-center justify-between">
+                  <h3 className="font-bold text-base md:text-lg text-zinc-100 pr-8 group-hover:text-zinc-400 transition-colors uppercase tracking-tight">{faq.question}</h3>
+                  <div className={cn("p-1.5 rounded-full border border-white/10 bg-transparent transition-all duration-500", isOpen ? "rotate-45 bg-white text-black" : "rotate-0 text-white")}>
+                    <Plus size={16} strokeWidth={1.5} />
                   </div>
                 </div>
                 
                 <div 
                   className={cn(
                     "overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]", 
-                    isOpen ? "max-h-[500px] pb-10 opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-[500px] pb-8 opacity-100" : "max-h-0 opacity-0"
                   )}
                 >
-                  <div className="text-base text-zinc-400 leading-relaxed font-medium max-w-2xl uppercase tracking-tighter">
+                  <div className="text-sm text-zinc-500 leading-relaxed font-medium max-w-2xl uppercase tracking-tighter">
                     {faq.answer}
                   </div>
                 </div>

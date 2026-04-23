@@ -75,12 +75,12 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className={cn("flex items-center gap-4 transition-colors", isScrolled ? "text-[#1d1d1f]" : "text-white")}>
-          <button className="hover:opacity-70 transition-opacity hidden sm:block">
-            <Search size={16} strokeWidth={2.5} />
+        <div className={cn("flex items-center gap-2 transition-colors", isScrolled ? "text-[#1d1d1f]" : "text-white")}>
+          <button className="hover:opacity-70 transition-opacity hidden sm:block p-2">
+            <Search size={15} strokeWidth={3} />
           </button>
-          <button className="hover:opacity-70 transition-opacity">
-            <ShoppingBag size={16} strokeWidth={2.5} />
+          <button className="hover:opacity-70 transition-opacity p-2">
+            <ShoppingBag size={15} strokeWidth={3} />
           </button>
           <button 
             className="lg:hidden p-1 hover:opacity-70 transition-opacity"
