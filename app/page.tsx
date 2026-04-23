@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { LogoMarquee } from "@/components/sections/LogoMarquee";
 
 export default function Home() {
   return (
@@ -7,9 +8,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        {/* Temporary space to test the Hero GSAP effect when scrolling past it */}
-        <section className="h-[100vh] flex items-start justify-center pt-32 bg-white text-black">
-          <p className="text-2xl font-light tracking-tight">The Lumina Experience continues below.</p>
+        <LogoMarquee />
+        {/* Temporary space to test scrolling past the marquee */}
+        <section className="h-[80vh] flex items-start justify-center pt-32 bg-white text-black">
+          <p className="text-2xl font-light tracking-tight">Gallery section will be here.</p>
         </section>
       </main>
     </div>
