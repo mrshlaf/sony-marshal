@@ -18,7 +18,7 @@ export function LogoMarquee() {
   const allBrands = [...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS];
 
   return (
-    <section ref={containerRef} className="py-8 bg-[#f5f5f7] flex flex-col justify-center overflow-hidden border-b border-zinc-200/50">
+    <section ref={containerRef} className="py-4 md:py-8 bg-[#f5f5f7] flex flex-col justify-center overflow-hidden border-b border-zinc-200/50">
       <div className="w-full flex whitespace-nowrap mask-edges">
         <div className="marquee-inner flex gap-12 md:gap-24 px-4 items-center">
           {allBrands.map((brand, idx) => (

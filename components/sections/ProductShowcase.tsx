@@ -16,7 +16,7 @@ const SHOWCASE_ITEMS = [
     image: "/images/sony-alpha-7.png",
     price: "$2,499.99",
     size: "md:col-span-2 md:row-span-2",
-    bg: "bg-[#f5f5f7]",
+    bg: "bg-[#f2f2f4]",
     specs: [
       { icon: Target, label: "Sensor", value: "33.0 MP" },
       { icon: Zap, label: "Processor", value: "BIONZ XR™" },
@@ -30,7 +30,7 @@ const SHOWCASE_ITEMS = [
     image: "/images/sony-ps5.png",
     price: "$499.99",
     size: "md:col-span-1 md:row-span-2",
-    bg: "bg-[#0a0a0a]",
+    bg: "bg-[#0d0d0d]",
     text: "text-white",
     specs: [
       { icon: Zap, label: "SSD", value: "HI-SPEED" },
@@ -44,7 +44,7 @@ const SHOWCASE_ITEMS = [
     image: "/images/sony-wh1000xm5.png",
     price: "$399.99",
     size: "md:col-span-1 md:row-span-2",
-    bg: "bg-[#e5e5e5]",
+    bg: "bg-zinc-200",
     specs: [
       { icon: Volume2, label: "Audio", value: "HI-RES" },
     ],
@@ -57,7 +57,7 @@ const SHOWCASE_ITEMS = [
     image: "/images/sony-wf1000xm5.png",
     price: "$299.99",
     size: "md:col-span-2 md:row-span-1",
-    bg: "bg-white border border-zinc-100",
+    bg: "bg-zinc-50 border border-zinc-100",
     specs: [
       { icon: Zap, label: "ANC", value: "V2 CHIP" },
     ],
@@ -70,7 +70,7 @@ const SHOWCASE_ITEMS = [
     image: "/images/sony-speaker-xg300.png",
     price: "$349.99",
     size: "md:col-span-2 md:row-span-1",
-    bg: "bg-[#111111]",
+    bg: "bg-[#161616]",
     text: "text-white",
     specs: [
       { icon: Zap, label: "Runtime", value: "25H" },
@@ -99,38 +99,38 @@ export function ProductShowcase() {
   };
 
   return (
-    <section ref={containerRef} className="w-full py-8 md:py-16 bg-white px-6">
+    <section ref={containerRef} className="w-full py-8 md:py-16 bg-white px-10 md:px-6">
       <div className="max-w-[1400px] mx-auto">
-        <div className="mb-8 md:mb-12">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#1d1d1f]">
+        <div className="mb-8 md:mb-10">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#1d1d1f] uppercase leading-none md:leading-[0.8]">
             Premium <br /> <span className="text-zinc-300 uppercase">Selection.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[280px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]">
           {SHOWCASE_ITEMS.map((item, idx) => (
             <div key={idx} onClick={() => setActiveItem(item)}
-              className={cn("bento-item group cursor-pointer rounded-[40px] overflow-hidden relative p-8 transition-all hover:shadow-2xl",
+              className={cn("bento-item group cursor-pointer rounded-[32px] overflow-hidden relative p-8 transition-all hover:shadow-2xl",
                 item.size, item.bg, item.text || "text-[#1d1d1f]")}
             >
               <div className="relative z-30 h-full flex flex-col justify-between">
                 <div className="max-w-[220px]">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2 leading-none uppercase">{item.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2 leading-none uppercase">{item.title}</h3>
                   <p className="text-[10px] font-bold opacity-40 uppercase tracking-widest">{item.desc}</p>
                 </div>
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] bg-black/5 w-fit px-5 py-3 rounded-full backdrop-blur-md transition-all">
+                <div className={cn("flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] w-fit px-5 py-3 rounded-full backdrop-blur-md transition-all", item.text === "text-white" ? "bg-white/10" : "bg-black/5")}>
                   Details <ArrowUpRight size={14} />
                 </div>
               </div>
 
-              <div className={cn("absolute inset-0 z-10 flex items-center justify-center p-10",
+              <div className={cn("absolute inset-0 z-10 flex items-center justify-center p-8",
                 item.size.includes("row-span-2") ? "items-end pb-12" : "items-center")}>
                 <div className={cn("relative w-full h-full transform transition-all duration-1000 group-hover:scale-105",
-                  item.id === "cameras" ? "scale-110 translate-y-4 translate-x-4 h-[120%]" : 
-                  item.id === "playstation" ? "scale-90 translate-y-2" :
-                  item.id === "audio" ? "scale-95 translate-y-6" : 
-                  item.id === "audio-earbuds" ? "scale-75 translate-y-4" : "scale-90 translate-y-4")}>
-                  <Image src={item.image} alt={item.title} fill className="object-contain drop-shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-1000 pointer-events-none" />
+                  item.id === "cameras" ? "scale-105 translate-y-4 translate-x-4 h-[120%]" : 
+                  item.id === "playstation" ? "scale-85 translate-y-2" :
+                  item.id === "audio" ? "scale-90 translate-y-6" : 
+                  item.id === "audio-earbuds" ? "scale-75 translate-y-4" : "scale-85 translate-y-4")}>
+                  <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain drop-shadow-xl grayscale group-hover:grayscale-0 transition-all duration-1000 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -139,7 +139,7 @@ export function ProductShowcase() {
       </div>
 
       {activeItem && (
-        <div ref={modalRef} className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-xl">
+        <div ref={modalRef} className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-3xl">
           <div className="absolute inset-0" onClick={closeModal}></div>
           <div className="modal-content-box relative w-full max-w-4xl bg-white rounded-[40px] overflow-hidden flex flex-col md:flex-row shadow-2xl">
             <button onClick={closeModal} className="absolute top-6 right-6 z-20 w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center text-[#1d1d1f] hover:bg-zinc-200">
@@ -147,7 +147,7 @@ export function ProductShowcase() {
             </button>
             <div className={cn("w-full md:w-1/2 p-12 flex items-center justify-center", activeItem.bg)}>
               <div className="relative w-full aspect-square">
-                <Image src={activeItem.image} alt={activeItem.title} fill className="object-contain drop-shadow-2xl" />
+                <Image src={activeItem.image} alt={activeItem.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain drop-shadow-2xl" />
               </div>
             </div>
             <div className="w-full md:w-1/2 p-8 md:p-12">

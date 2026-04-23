@@ -45,12 +45,12 @@ export function Lifestyle() {
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
       
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-6">
-         <div className="lifestyle-text">
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-zinc-100 mb-6 leading-[0.85] uppercase">
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-10 md:px-6">
+         <div className="lifestyle-text w-full max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-8xl font-bold tracking-tighter text-zinc-100 mb-6 leading-[0.85] uppercase">
               Documenting <br /> every <span className="text-zinc-600">KANDO</span> moment.
             </h2>
-            <p className="text-sm md:text-base text-zinc-500 max-w-xl mx-auto font-bold uppercase tracking-[0.3em]">
+            <p className="text-[10px] md:text-base text-zinc-500 max-w-xl mx-auto font-bold uppercase tracking-[0.3em]">
               Visual legacies with uncompromising precision.
             </p>
          </div>

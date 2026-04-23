@@ -54,13 +54,13 @@ export function Faq() {
   };
 
   return (
-    <section ref={containerRef} id="support" className="py-10 md:py-16 bg-[#0d0d0d] px-6 border-t border-white/5">
+    <section ref={containerRef} id="support" className="py-12 md:py-20 bg-[#0d0d0d] px-10 md:px-6 border-t border-white/5">
       <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-8 lg:gap-20">
         <div className="w-full lg:w-4/12">
            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-2 uppercase">
              Common <br /> <span className="text-zinc-500">Queries.</span>
            </h2>
-           <p className="text-zinc-400 font-bold uppercase tracking-widest text-[9px]">Expert technical guidance reference.</p>
+           <p className="text-zinc-400 font-bold uppercase tracking-widest text-[9px] md:text-[10px]">Expert technical guidance reference.</p>
         </div>
 
         <div className="w-full lg:w-8/12 flex flex-col border-t border-white/10 mt-4">

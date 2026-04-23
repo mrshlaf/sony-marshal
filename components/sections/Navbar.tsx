@@ -66,7 +66,7 @@ export function Navbar() {
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
               className={cn(
-                "text-[11px] font-bold tracking-widest transition-colors uppercase",
+                "text-[10px] font-bold tracking-widest transition-colors uppercase",
                 isScrolled ? "text-[#1d1d1f]/70 hover:text-black" : "text-white/80 hover:text-white"
               )}
             >
@@ -93,7 +93,7 @@ export function Navbar() {
 
       <div 
         className={cn(
-          "fixed inset-0 z-[55] bg-white transition-all duration-500 flex flex-col pt-24 px-8",
+          "fixed inset-0 z-[55] bg-white transition-all duration-500 flex flex-col pt-24 px-10",
           isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         )}
       >
